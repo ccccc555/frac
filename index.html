@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+  <title>Random Fractal</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
 <body>
   <canvas id="fractalCanvas" width="200" height="200"></canvas>
 
@@ -8,8 +15,7 @@
     // Get the canvas element
     var canvas = document.getElementById("fractalCanvas");
     var context = canvas.getContext("2d");
- var newX,newY,newWidth,newHeight,
-    newDepth, color;
+
     // Function to draw a random fractal
     function drawFractal(x, y, width, height, depth) {
       // Base case: stop recursing when the depth is zero
@@ -18,7 +24,7 @@
       }
 
       // Generate a random color
-      color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
       // Set the fill color
       context.fillStyle = color;
@@ -27,16 +33,13 @@
       context.fillRect(x, y, width, height);
 
       // Calculate the new position and size for the next fractals
-     newX = x + Math.random() * width;
-     newY = y + Math.random() * height;
-     newWidth = width * 0.9;
-     newHeight = height * 0.9;
-     newDepth = depth - 1;
+      var newX = x + Math.random() * width;
+      var newY = y + Math.random() * height;
+      var newWidth = width * 0.9;
+      var newHeight = height * 0.9;
+      var newDepth = depth - 1;
 
       // Recursively draw the next fractals
-      setTimeout(next,20)
-    }
-    function next(){
       drawFractal(newX, newY, newWidth, newHeight, newDepth);
       drawFractal(x, y, newWidth, newHeight, newDepth);
     }
@@ -45,7 +48,7 @@
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Define the initial depth for the fractal
-    var initialDepth = 5;
+    var initialDepth = 7;
 
     // Call the drawFractal function with initial parameters to start drawing the fractal
     drawFractal(0, 0, canvas.width, canvas.height, initialDepth);
