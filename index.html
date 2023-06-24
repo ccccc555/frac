@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Fractal</title>
+  <title>RandomFractal</title>
   <style>
     canvas {
       border: 1px solid black;
@@ -27,8 +27,8 @@
       context.fillRect(x, y, width, height);
 
       // Choose a random position and size for the next fractal
-      var newX = Math.random() * width + x;
-      var newY = Math.random() * height + y;
+      var newX = x + Math.random() * width - width / 2;
+      var newY = y + Math.random() * height - height / 2;
       var newWidth = width / 2;
       var newHeight = height / 2;
 
@@ -44,3 +44,4 @@
   </script>
 </body>
 </html>
+
