@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Fractal</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fractalCanvas" width="200" height="200"></canvas>
+
+  <script>
+    // Get the canvas element
+    var canvas = document.getElementById("fractalCanvas");
+    var context = canvas.getContext("2d");
+
+    // Recursive function to draw the fractal
+    function drawFractal(x, y, width, height) {
+      // Base case: stop recursing when the width or height is less than 1 pixel
+      if (width < 1 || height < 1) {
+        return;
+      }
+
+      // Draw a rectangle at the given position and size
+      context.fillRect(x, y, width, height);
+
+      // Choose a random position and size for the next fractal
+      var newX = Math.random() * width + x;
+      var newY = Math.random() * height + y;
+      var newWidth = width / 2;
+      var newHeight = height / 2;
+
+      // Recursively draw the next fractal
+      drawFractal(newX, newY, newWidth, newHeight);
+    }
+
+    // Call the drawFractal function with initial parameters
+    drawFractal(0, 0, canvas.width, canvas.height);
+  </script>
+</body>
+</html>
