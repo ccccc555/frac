@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Fractal</title>
+  <title>R Fractal</title>
   <style>
     canvas {
       border: 1px solid black;
@@ -24,26 +24,23 @@
       }
 
       // Draw a rectangle at the given position and size
-      context.clearRect(x, y, width, height);
+      context.fillRect(x, y, width, height);
 
-      // Calculate the midpoint of the current rectangle
-      var midX = x + width / 2;
-      var midY = y + height / 2;
+      // Calculate the new position and size for the next fractal
+      var newX = x + Math.random() * width;
+      var newY = y + Math.random() * height;
+      var newWidth = width * 0.9;
+      var newHeight = height * 0.9;
 
-      // Calculate the new size for the next fractal
-      var newWidth = width / 2;
-      var newHeight = height / 2;
-
-      // Recursively draw the next fractals
-      drawFractal(x, y, newWidth, newHeight); // Top-left
-      drawFractal(midX, y, newWidth, newHeight); // Top-right
-      drawFractal(x, midY, newWidth, newHeight); // Bottom-left
-      drawFractal(midX, midY, newWidth, newHeight); // Bottom-right
+      // Recursively draw the next fractal
+      drawFractal(newX, newY, newWidth, newHeight);
     }
+
+    // Clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Call the drawFractal function with initial parameters to start drawing the fractal
     drawFractal(0, 0, canvas.width, canvas.height);
   </script>
 </body>
 </html>
-
