@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+  <title>Random Fractal</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
 <body>
-  <canvas id="Canvas1" width="200" height="200"></canvas>
+  <canvas id="fractalCanvas" width="200" height="200"></canvas>
 
   <script>
     // Get the canvas element
-    var canvas = document.getElementById("Canvas1");
+    var canvas = document.getElementById("fractalCanvas");
     var context = canvas.getContext("2d");
 
     // Recursive function to draw the fractal
@@ -28,6 +35,9 @@
       // Recursively draw the next fractal
       drawFractal(newX, newY, newWidth, newHeight);
     }
+
+    // Clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Call the drawFractal function with initial parameters
     drawFractal(0, 0, canvas.width, canvas.height);
