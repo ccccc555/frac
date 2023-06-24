@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fractal</title>
+  <title>Random Fractal</title>
   <style>
     canvas {
       border: 1px solid black;
@@ -25,11 +25,15 @@
       }
 
       // Draw a rectangle at the given position and size
-      context.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+      context.fillRect(x, y, width, height);
 
-      // Choose a random position and size for the next fractal
-      var newX = x + Math.random() * width - width / 2;
-      var newY = y + Math.random() * height - height / 2;
+      // Calculate the midpoints of the current rectangle
+      var midX = x + width / 2;
+      var midY = y + height / 2;
+
+      // Calculate the new position and size for the next fractal
+      var newX = midX - width / 4 + Math.random() * width / 2;
+      var newY = midY - height / 4 + Math.random() * height / 2;
       var newWidth = width / 2;
       var newHeight = height / 2;
 
