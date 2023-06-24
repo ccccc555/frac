@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Random Fractal</title>
-  <style>
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
-</head>
+
 <body>
   <canvas id="fractalCanvas" width="200" height="200"></canvas>
 
@@ -40,6 +33,9 @@
       var newDepth = depth - 1;
 
       // Recursively draw the next fractals
+      setTimeout(next,20)
+    }
+    function next(){
       drawFractal(newX, newY, newWidth, newHeight, newDepth);
       drawFractal(x, y, newWidth, newHeight, newDepth);
     }
