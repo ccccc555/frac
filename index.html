@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Randomtal</title>
+  <title>Random Fractal</title>
   <style>
     canvas {
       border: 1px solid black;
@@ -17,36 +17,35 @@
     var context = canvas.getContext("2d");
 
     // Function to draw a random fractal
-    function drawFractal(x1, y1, x2, y2) {
-      // Base case: stop recursing when the line segment is very small
-      if (Math.abs(x2 - x1) < 1 && Math.abs(y2 - y1) < 1) {
+    function drawFractal(x, y, width, height) {
+      // Base case: stop recursing when the width or height is less than 1 pixel
+      if (width < 1 || height < 1) {
         return;
       }
 
-      // Draw a line segment at the given coordinates
-      context.beginPath();
-      context.moveTo(x1, y1);
-      context.lineTo(x2, y2);
-      context.stroke();
+      // Draw a rectangle at the given position and size
+      context.fillRect(x, y, width, height);
 
-      // Calculate the midpoint of the line segment
-      var midX = (x1 + x2) / 2;
-      var midY = (y1 + y2) / 2;
+      // Calculate the midpoint of the current rectangle
+      var midX = x + width / 2;
+      var midY = y + height / 2;
 
-      // Calculate a random offset for the midpoint
-      var offsetX = (Math.random() - 0.5) * (x2 - x1);
-      var offsetY = (Math.random() - 0.5) * (y2 - y1);
+      // Calculate the new size for the next fractal
+      var newWidth = width / 2;
+      var newHeight = height / 2;
 
-      // Recursively draw the fractal on the left and right segments
-      drawFractal(x1, y1, midX + offsetX, midY + offsetY);
-      drawFractal(midX + offsetX, midY + offsetY, x2, y2);
+      // Recursively draw the next fractals
+      drawFractal(x, y, newWidth, newHeight); // Top-left
+      drawFractal(midX, y, newWidth, newHeight); // Top-right
+      drawFractal(x, midY, newWidth, newHeight); // Bottom-left
+      drawFractal(midX, midY, newWidth, newHeight); // Bottom-right
     }
 
     // Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // Call the drawFractal function with initial parameters to start drawing the fractal
-    drawFractal(0, canvas.height / 2, canvas.width, canvas.height / 2);
+    drawFractal(0, 0, canvas.width, canvas.height);
   </script>
 </body>
 </html>
